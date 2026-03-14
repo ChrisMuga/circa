@@ -10,3 +10,6 @@ build-run-macos:
 	@ make build-macos
 	@ echo "Running..."
 	@ make run-macos
+format:
+	@ echo Formatting files...
+	@ clang-format ./src/*.c -i --verbose
