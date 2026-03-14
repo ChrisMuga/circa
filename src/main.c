@@ -28,7 +28,7 @@ int main(void)
             ClearBackground(GRAY);
 			Vector2 MousePosition = GetMousePosition();
 			printf("----> <%f, %f>\n", MousePosition.x, MousePosition.y);
-			// DrawCircle(MousePosition.x, MousePosition.y, 100.0, RED);
+			DrawCircle(MousePosition.x, MousePosition.y, 10.0, RED);
 			
 			bool mousePositionDown = IsMouseButtonDown(1);
 			bool mousePositionReleased = IsMouseButtonReleased(1);
@@ -36,10 +36,6 @@ int main(void)
 
 
             DrawText("CIRCA", 190, 200, 60, LIGHTGRAY);
-
-			if(IsMouseButtonPressed(1)){
-				ClearBackground(GRAY);
-			}
 
 			if(idx < MAX){
 				if(MousePosition.x > 0){
@@ -56,12 +52,12 @@ int main(void)
 					Vector2 pos = mousePositions[i];
 					int py = 300 + (10 * i+1);
 					// DrawPixelV(pos, BLUE);
-					DrawCircleV(pos, 30.0, RED);
-					Vector2 v = {0, 0};
-					mousePositions[i] =  v;
+					DrawCircleV(pos, 10.0, RED);
+					// Vector2 v = {0, 0};
+					// mousePositions[i] =  v;
 				}
 
-				idx = 0;
+				// idx = 0;
 			}
         EndDrawing();
     }
