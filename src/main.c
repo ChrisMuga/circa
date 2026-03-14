@@ -11,22 +11,22 @@ void drawPoints(Vector2 mousePositions[MAX], int *idx) {
   int maxObtained = *idx == MAX;
 
   if (!maxObtained) {
-	  if (*idx < MAX) {
-		if (MousePosition.x > 0) {
-		  mousePositions[*idx] = MousePosition;
-		  *idx += 1;
-		}
-	  }
-  } else{
+    if (*idx < MAX) {
+      if (MousePosition.x > 0) {
+        mousePositions[*idx] = MousePosition;
+        *idx += 1;
+      }
+    }
+  } else {
     DrawText("MAX OBTAINED", 190, 300, 60, LIGHTGRAY);
     DrawText("<Press Backspace to clear canvas>", 190, 400, 20, LIGHTGRAY);
   }
 
   // Draw our "brush strokes"
   for (int i = 0; i < MAX; i++) {
-      Vector2 pos = mousePositions[i];
-      int py = 300 + (10 * i + 1);
-      DrawCircleV(pos, 10.0, RED);
+    Vector2 pos = mousePositions[i];
+    int py = 300 + (10 * i + 1);
+    DrawCircleV(pos, 10.0, RED);
   }
 }
 
