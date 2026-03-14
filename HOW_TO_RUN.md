@@ -18,7 +18,9 @@ This builds `bin/circa-macos` and runs it in fullscreen.
 
 ## Usage
 - The app opens in fullscreen mode.
-- Hold the left mouse button (or touch on supported devices) to draw red circles at cursor positions. It stores up to 1000 points.
-- Press Backspace to reset all points.
-- When max points (1000) are reached, it displays "MAX OBTAINED" and redraws all stored points below the title.
+- A red circle follows the mouse/touch position continuously.
+- The app automatically captures and stores up to 1000 positions over time, redrawing all stored points as red circles at their original locations.
+- Hold the left mouse button to display "DRAWING..." status (does not affect storage).
+- When 1000 points are reached, it displays "MAX OBTAINED" and "<Press Backspace to clear canvas>".
+- Press Backspace at any time to reset all stored points and clear the canvas.
 - Close the window (ESC or Alt+F4) to exit.

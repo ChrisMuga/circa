@@ -10,22 +10,23 @@ void drawPoints(Vector2 mousePositions[MAX], int *idx) {
   DrawCircle(MousePosition.x, MousePosition.y, 10.0, RED);
   int maxObtained = *idx == MAX;
 
-  if (*idx < MAX) {
-    if (MousePosition.x > 0) {
-      mousePositions[*idx] = MousePosition;
-      printf("IDX --> %d", *idx);
-      *idx += 1;
-    }
+  if (!maxObtained) {
+	  if (*idx < MAX) {
+		if (MousePosition.x > 0) {
+		  mousePositions[*idx] = MousePosition;
+		  *idx += 1;
+		}
+	  }
+  } else{
+    DrawText("MAX OBTAINED", 190, 300, 60, LIGHTGRAY);
+    DrawText("<Press Backspace to clear canvas>", 190, 400, 20, LIGHTGRAY);
   }
 
-  if (maxObtained) {
-    DrawText("MAX OBTAINED", 190, 300, 60, LIGHTGRAY);
-
-    for (int i = 0; i < MAX; i++) {
+  // Draw our "brush strokes"
+  for (int i = 0; i < MAX; i++) {
       Vector2 pos = mousePositions[i];
       int py = 300 + (10 * i + 1);
       DrawCircleV(pos, 10.0, RED);
-    }
   }
 }
 
@@ -51,7 +52,7 @@ int main(void) {
   int idx = 0;
 
   while (!WindowShouldClose()) {
-    bool mouseButtonDown = IsMouseButtonDown(0);
+    bool mouseButtonDown = IsMouseButtonDown(MOUSE_BUTTON_LEFT);
     int keyPressed = GetKeyPressed();
 
     if (keyPressed == KEY_BACKSPACE) {
@@ -67,6 +68,7 @@ int main(void) {
       drawPoints(mousePositions, &idx);
     } else {
       // idx = 0;
+      drawPoints(mousePositions, &idx);
     }
 
     EndDrawing();
