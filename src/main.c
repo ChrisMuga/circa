@@ -65,7 +65,12 @@ int main(void) {
     BeginDrawing();
     ClearBackground(GRAY);
     DrawText("CIRCA", 190, 200, 60, LIGHTGRAY);
+    DrawText("Hold left click to start drawing...", 190, 250, 20, LIGHTGRAY);
 
+    // TODO: When we stop holding the left click, we should find a way to simply
+    // draw the mouse positions without adding to mouse positions,
+    // - perhaps we will have to pass a boolean to denote "viewing mode", vs
+    // "drawing mode"
     if (mouseButtonDown) {
       DrawText("DRAWING...", 190, 100, 60, LIGHTGRAY);
       drawPoints(mousePositions, &idx);
