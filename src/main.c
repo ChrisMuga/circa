@@ -2,12 +2,15 @@
 
 #include "../libraries/raylib/src/raylib.h"
 
-#define MAX 1000
+#define MAX 10000
 
 void drawPoints(Vector2 mousePositions[MAX], int *idx) {
   Vector2 MousePosition = GetTouchPosition(0);
+
   printf("----> <%f, %f>\n", MousePosition.x, MousePosition.y);
+
   DrawCircle(MousePosition.x, MousePosition.y, 10.0, RED);
+
   int maxObtained = *idx == MAX;
 
   if (!maxObtained) {
@@ -46,7 +49,7 @@ int main(void) {
   // NOTE: Mouse position tracking only works with fullscreen for now.
   ToggleFullscreen();
 
-  SetTargetFPS(120);
+  SetTargetFPS(240);
 
   Vector2 mousePositions[MAX] = {0};
   int idx = 0;
@@ -65,9 +68,6 @@ int main(void) {
 
     if (mouseButtonDown) {
       DrawText("DRAWING...", 190, 100, 60, LIGHTGRAY);
-      drawPoints(mousePositions, &idx);
-    } else {
-      // idx = 0;
       drawPoints(mousePositions, &idx);
     }
 
