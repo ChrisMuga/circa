@@ -3,8 +3,16 @@
 #include "../libraries/raylib/src/raylib.h"
 
 #define MAX 10000
+void paintAll(Vector2 mousePositions[MAX]){
+  // Draw our "brush strokes"
+  for (int i = 0; i < MAX; i++) {
+    Vector2 pos = mousePositions[i];
+    int py = 300 + (10 * i + 1);
+    DrawCircleV(pos, 10.0, GREEN);
+  }
+}
 
-void drawPoints(Vector2 mousePositions[MAX], int *idx) {
+void drawPoints(Vector2 mousePositions[MAX], int *idx, bool mouseButtonDown) {
   Vector2 MousePosition = GetTouchPosition(0);
 
   printf("----> <%f, %f>\n", MousePosition.x, MousePosition.y);
@@ -13,29 +21,30 @@ void drawPoints(Vector2 mousePositions[MAX], int *idx) {
 
   int maxObtained = *idx == MAX;
 
-  if (!maxObtained) {
+  if (maxObtained) {
+    DrawText("MAX OBTAINED", 190, 300, 60, LIGHTGRAY);
+    DrawText("<Press Backspace to clear canvas>", 190, 400, 20, LIGHTGRAY);
+
+	paintAll(mousePositions);
+    return;
+  }
+
+  if (mouseButtonDown) {
     if (*idx < MAX) {
       if (MousePosition.x > 0) {
         mousePositions[*idx] = MousePosition;
         *idx += 1;
       }
     }
-  } else {
-    DrawText("MAX OBTAINED", 190, 300, 60, LIGHTGRAY);
-    DrawText("<Press Backspace to clear canvas>", 190, 400, 20, LIGHTGRAY);
   }
 
-  // Draw our "brush strokes"
-  for (int i = 0; i < MAX; i++) {
-    Vector2 pos = mousePositions[i];
-    int py = 300 + (10 * i + 1);
-    DrawCircleV(pos, 10.0, RED);
-  }
+  paintAll(mousePositions);
+
 }
 
 void reset(Vector2 mousePositions[MAX], int *idx) {
   for (int i = 0; i < MAX; i++) {
-    Vector2 v = {0, 0};
+    Vector2 v = {-100, -100};
     mousePositions[i] = v;
   }
   *idx = 0;
@@ -51,7 +60,7 @@ int main(void) {
 
   SetTargetFPS(240);
 
-  Vector2 mousePositions[MAX] = {0};
+  Vector2 mousePositions[MAX] = {};
   int idx = 0;
 
   while (!WindowShouldClose()) {
@@ -64,6 +73,7 @@ int main(void) {
 
     BeginDrawing();
     ClearBackground(GRAY);
+
     DrawText("CIRCA", 190, 200, 60, LIGHTGRAY);
     DrawText("Hold left click to start drawing...", 190, 250, 20, LIGHTGRAY);
 
@@ -71,10 +81,10 @@ int main(void) {
     // draw the mouse positions without adding to mouse positions,
     // - perhaps we will have to pass a boolean to denote "viewing mode", vs
     // "drawing mode"
-    if (mouseButtonDown) {
-      DrawText("DRAWING...", 190, 100, 60, LIGHTGRAY);
-      drawPoints(mousePositions, &idx);
-    }
+	if(mouseButtonDown){
+		DrawText("DRAWING...", 190, 100, 60, LIGHTGRAY);
+	}
+    drawPoints(mousePositions, &idx, mouseButtonDown);
 
     EndDrawing();
   }
