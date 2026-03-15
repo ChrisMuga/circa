@@ -3,11 +3,10 @@
 #include "../libraries/raylib/src/raylib.h"
 
 #define MAX 10000
-void paintAll(Vector2 mousePositions[MAX]){
+void paintAll(Vector2 mousePositions[MAX]) {
   // Draw our "brush strokes"
   for (int i = 0; i < MAX; i++) {
     Vector2 pos = mousePositions[i];
-    int py = 300 + (10 * i + 1);
     DrawCircleV(pos, 10.0, GREEN);
   }
 }
@@ -25,7 +24,7 @@ void drawPoints(Vector2 mousePositions[MAX], int *idx, bool mouseButtonDown) {
     DrawText("MAX OBTAINED", 190, 300, 60, LIGHTGRAY);
     DrawText("<Press Backspace to clear canvas>", 190, 400, 20, LIGHTGRAY);
 
-	paintAll(mousePositions);
+    paintAll(mousePositions);
     return;
   }
 
@@ -39,7 +38,6 @@ void drawPoints(Vector2 mousePositions[MAX], int *idx, bool mouseButtonDown) {
   }
 
   paintAll(mousePositions);
-
 }
 
 void reset(Vector2 mousePositions[MAX], int *idx) {
@@ -57,7 +55,8 @@ int main(void) {
   MaximizeWindow();
 
   // NOTE: Mouse position tracking only works with fullscreen for now.
-  // ToggleFullscreen();
+  // ToggleFullscreen(); // TODO: For some reason, partial dimensions or sub-max
+  // dimensions do not work in macos, not allowing it to paint.
 
   SetTargetFPS(240);
 
@@ -82,9 +81,9 @@ int main(void) {
     // draw the mouse positions without adding to mouse positions,
     // - perhaps we will have to pass a boolean to denote "viewing mode", vs
     // "drawing mode"
-	if(mouseButtonDown){
-		DrawText("DRAWING...", 190, 100, 20, LIGHTGRAY);
-	}
+    if (mouseButtonDown) {
+      DrawText("DRAWING...", 190, 100, 20, LIGHTGRAY);
+    }
     drawPoints(mousePositions, &idx, mouseButtonDown);
 
     EndDrawing();
