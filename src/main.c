@@ -51,12 +51,13 @@ void reset(Vector2 mousePositions[MAX], int *idx) {
 }
 
 int main(void) {
-  InitWindow(800, 450, "CIRCA");
-  // TODO: Cannot track the mouse on partial sized displays, i.e non-fullscreen
-  // displays SetWindowSize(1600, 1200);
+  InitWindow(1600, 1200, "CIRCA");
+
+  SetWindowState(FLAG_WINDOW_RESIZABLE);
+  MaximizeWindow();
 
   // NOTE: Mouse position tracking only works with fullscreen for now.
-  ToggleFullscreen();
+  // ToggleFullscreen();
 
   SetTargetFPS(240);
 
@@ -82,7 +83,7 @@ int main(void) {
     // - perhaps we will have to pass a boolean to denote "viewing mode", vs
     // "drawing mode"
 	if(mouseButtonDown){
-		DrawText("DRAWING...", 190, 100, 60, LIGHTGRAY);
+		DrawText("DRAWING...", 190, 100, 20, LIGHTGRAY);
 	}
     drawPoints(mousePositions, &idx, mouseButtonDown);
 
