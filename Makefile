@@ -19,6 +19,8 @@ build-linux:
 	@ gcc src/main.c -o bin/circa-linux -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 run-linux:
 	@ ./bin/circa-linux
+build-run-linux:
+	@ make build-linux run-linux
 format:
 	@ echo Formatting files...
 	@ clang-format ./src/*.c -i --verbose
