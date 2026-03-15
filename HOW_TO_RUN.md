@@ -17,10 +17,10 @@ make run-macos
 This builds `bin/circa-macos` and runs it in fullscreen.
 
 ## Usage
-- The app opens in fullscreen mode.
-- A red circle follows the mouse/touch position continuously.
-- The app automatically captures and stores up to 1000 positions over time, redrawing all stored points as red circles at their original locations.
-- Hold the left mouse button to display "DRAWING..." status (does not affect storage).
-- When 1000 points are reached, it displays "MAX OBTAINED" and "<Press Backspace to clear canvas>".
+- The app opens in fullscreen mode (mouse/touch tracking works best here).
+- Hold the left mouse button (or touch) to draw: displays "DRAWING..." and captures positions as red circles.
+- Positions are stored continuously while drawing, up to 1000 points.
+- Once 1000 points are reached (while drawing), it displays "MAX OBTAINED" and redraws all stored points at their original locations.
 - Press Backspace at any time to reset all stored points and clear the canvas.
-- Close the window (ESC or Alt+F4) to exit.
+- Release mouse/touch to stop capturing (stored points persist until reset or max redraw).
+- Close the window (ESC or Cmd+Q on macOS) to exit.
