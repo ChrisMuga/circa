@@ -1,3 +1,5 @@
+// TODO: This implementation is currently seg-faulting, we'll have to use
+// pointer arithmetic to properly use pointStates
 #include <stdio.h>
 
 #include "../libraries/raylib/src/raylib.h"
@@ -14,8 +16,8 @@ struct ColorMap {
 };
 
 struct PointState {
-	Vector2 mousePositions[MAX];
-	Color color;
+  Vector2 mousePosition[MAX];
+  Color color;
 };
 
 struct ColorMap Colors[5] = {
@@ -23,43 +25,40 @@ struct ColorMap Colors[5] = {
     {"Black", BLACK}, {"White", WHITE},
 };
 
-void paintAll(Vector2 mousePositions[MAX], Color color) {
+void paintAll(struct PointState pointStates[MAX]) {
   // Draw our "brush strokes"
   for (int i = 0; i < MAX; i++) {
-    Vector2 pos = mousePositions[i];
-    if (pos.x > 0 && pos.y > 0) {
-      DrawCircleV(pos, 10.0, color);
+    struct PointState ps = pointStates[i];
+    if (ps.mousePosition->x > 0 && ps.mousePosition->y > 0) {
+      DrawCircleV(*ps.mousePosition, 10.0, ps.color);
     }
   }
 }
 
-void drawPoints(Vector2 mousePositions[MAX], int *idx, bool mouseButtonDown,
-                Color color) {
-  Vector2 MousePosition = GetTouchPosition(0);
-
-  printf("----> <%f, %f>\n", MousePosition.x, MousePosition.y);
-
-  DrawCircle(MousePosition.x, MousePosition.y, 10.0, RED);
+void drawPoints(struct PointState pointStates[MAX], int *idx,
+                bool mouseButtonDown) {
+  Vector2 mp = GetTouchPosition(0);
+  DrawCircleV(mp, 10.0, RED);
 
   if (mouseButtonDown) {
-    if (MousePosition.x >= 0) {
-      mousePositions[*idx] = MousePosition;
+    if (mp.x >= 0) {
+      struct PointState curr = {mp, ColorToInt(RED)};
+      pointStates[*idx] = curr;
       *idx += 1;
     }
   }
 
-  paintAll(mousePositions, color);
+  paintAll(pointStates);
 }
 
-void reset(Vector2 mousePositions[MAX], int *idx) {
+void reset(struct PointState pointStates[MAX], int *idx) {
   for (int i = 0; i < MAX; i++) {
     Vector2 v = {-1, -1};
-    mousePositions[i] = v;
+    struct PointState ps = {v, ColorToInt(LIGHTGRAY)};
+    pointStates[i] = ps;
   }
-  *idx = 0;
 }
 
-// TODO: Track all the mouse positions, and their corresponding colors at that time
 int main(void) {
   InitWindow(1600, 1200, "CIRCA");
 
@@ -73,7 +72,9 @@ int main(void) {
 
   SetTargetFPS(1000);
 
-  Vector2 mousePositions[MAX] = {};
+  // struct Vector2 initV2 = {-1,-1};
+  // struct PointState initPS = {initV2, GRAY};
+  struct PointState pointStates[MAX - 1] = {};
   int idx = 0;
   bool shouldClear = false;
   Color currentColor = BLUE; // Default to blue
@@ -83,7 +84,7 @@ int main(void) {
     int keyPressed = GetKeyPressed();
 
     if (keyPressed == KEY_BACKSPACE) {
-      reset(mousePositions, &idx);
+      reset(pointStates, &idx);
     }
 
     BeginDrawing();
@@ -108,14 +109,14 @@ int main(void) {
     }
 
     if (shouldClear) {
-      reset(mousePositions, &idx);
+      reset(pointStates, &idx);
       shouldClear = false;
     }
 
     if (mouseButtonDown) {
       DrawText("DRAWING...", 190, 100, 20, LIGHTGRAY);
     }
-    drawPoints(mousePositions, &idx, mouseButtonDown, currentColor);
+    drawPoints(pointStates, &idx, mouseButtonDown);
 
     EndDrawing();
   }
