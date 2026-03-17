@@ -3,7 +3,8 @@
 A simple drawing application built with Raylib and Raygui. Capture mouse or touch positions to draw trails on the canvas.
 
 ## Requirements
-- Raylib: [Install Raylib](https://github.com/raysan5/raylib)
+- Raylib: [Documentation](https://www.raylib.com/) | [Repository](https://github.com/raysan5/raylib) (install via instructions there)
+- Raygui: [Documentation](https://github.com/raysan5/raygui) (included in Raylib)
 - Ensure raylib static libraries are placed in the `libraries/` directory:
   - `libraylib-macos.a` for macOS
   - `libraylib-win.a` for Windows (ensure include path: libraries/raylib-5.5_win64_mingw-w64/include)
