@@ -3,7 +3,7 @@
 #include "../libraries/raylib/src/raylib.h"
 
 #define RAYGUI_IMPLEMENTATION
-#include "raygui.h"
+#include "../libraries/raygui.h"
 
 #define MAX 10000
 void paintAll(Vector2 mousePositions[MAX]) {
