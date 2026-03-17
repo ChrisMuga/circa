@@ -2,6 +2,9 @@
 
 #include "../libraries/raylib/src/raylib.h"
 
+#define RAYGUI_IMPLEMENTATION
+#include "raygui.h"
+
 #define MAX 10000
 void paintAll(Vector2 mousePositions[MAX]) {
   // Draw our "brush strokes"
@@ -62,6 +65,7 @@ int main(void) {
 
   Vector2 mousePositions[MAX] = {};
   int idx = 0;
+  bool shouldClear = false;
 
   while (!WindowShouldClose()) {
     bool mouseButtonDown = IsMouseButtonDown(MOUSE_BUTTON_LEFT);
@@ -76,6 +80,17 @@ int main(void) {
 
     DrawText("CIRCA", 190, 200, 60, LIGHTGRAY);
     DrawText("Hold left click to start drawing...", 190, 250, 20, LIGHTGRAY);
+
+    // TODO: How do we add icons to GuiButton?
+    if (GuiButton((Rectangle){190, 280, 200, 80}, "Clear")) {
+      shouldClear = true;
+    }
+    GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
+
+    if (shouldClear) {
+      reset(mousePositions, &idx);
+      shouldClear = false;
+    }
 
     // TODO: When we stop holding the left click, we should find a way to simply
     // draw the mouse positions without adding to mouse positions,
