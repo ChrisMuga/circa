@@ -10,7 +10,9 @@ void paintAll(Vector2 mousePositions[MAX]) {
   // Draw our "brush strokes"
   for (int i = 0; i < MAX; i++) {
     Vector2 pos = mousePositions[i];
-    DrawCircleV(pos, 10.0, GREEN);
+    if (pos.x > 0 && pos.y > 0) {
+      DrawCircleV(pos, 10.0, GREEN);
+    }
   }
 }
 
@@ -21,22 +23,10 @@ void drawPoints(Vector2 mousePositions[MAX], int *idx, bool mouseButtonDown) {
 
   DrawCircle(MousePosition.x, MousePosition.y, 10.0, RED);
 
-  int maxObtained = *idx == MAX;
-
-  if (maxObtained) {
-    DrawText("MAX OBTAINED", 190, 300, 60, LIGHTGRAY);
-    DrawText("<Press Backspace to clear canvas>", 190, 400, 20, LIGHTGRAY);
-
-    paintAll(mousePositions);
-    return;
-  }
-
   if (mouseButtonDown) {
-    if (*idx < MAX) {
-      if (MousePosition.x > 0) {
-        mousePositions[*idx] = MousePosition;
-        *idx += 1;
-      }
+    if (MousePosition.x >= 0) {
+      mousePositions[*idx] = MousePosition;
+      *idx += 1;
     }
   }
 
@@ -45,7 +35,7 @@ void drawPoints(Vector2 mousePositions[MAX], int *idx, bool mouseButtonDown) {
 
 void reset(Vector2 mousePositions[MAX], int *idx) {
   for (int i = 0; i < MAX; i++) {
-    Vector2 v = {-100, -100};
+    Vector2 v = {-1, -1};
     mousePositions[i] = v;
   }
   *idx = 0;
@@ -61,7 +51,7 @@ int main(void) {
   // ToggleFullscreen(); // TODO: For some reason, partial dimensions or sub-max
   // dimensions do not work in macos, not allowing it to paint.
 
-  SetTargetFPS(240);
+  SetTargetFPS(1000);
 
   Vector2 mousePositions[MAX] = {};
   int idx = 0;
