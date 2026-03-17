@@ -9,16 +9,18 @@
 #define NUM_OF_COLORS 5
 
 struct ColorMap {
-	char name[10];
+  char name[10];
+  Color color;
+};
+
+struct PointState {
+	Vector2 mousePositions[MAX];
 	Color color;
 };
 
 struct ColorMap Colors[5] = {
-	{"Blue", BLUE},
-	{"Purple", PURPLE},
-	{"DarkGray", DARKGRAY},
-	{"Black", BLACK},
-	{"White", WHITE},
+    {"Blue", BLUE},   {"Purple", PURPLE}, {"DarkGray", DARKGRAY},
+    {"Black", BLACK}, {"White", WHITE},
 };
 
 void paintAll(Vector2 mousePositions[MAX], Color color) {
@@ -31,7 +33,8 @@ void paintAll(Vector2 mousePositions[MAX], Color color) {
   }
 }
 
-void drawPoints(Vector2 mousePositions[MAX], int *idx, bool mouseButtonDown, Color color) {
+void drawPoints(Vector2 mousePositions[MAX], int *idx, bool mouseButtonDown,
+                Color color) {
   Vector2 MousePosition = GetTouchPosition(0);
 
   printf("----> <%f, %f>\n", MousePosition.x, MousePosition.y);
@@ -56,6 +59,7 @@ void reset(Vector2 mousePositions[MAX], int *idx) {
   *idx = 0;
 }
 
+// TODO: Track all the mouse positions, and their corresponding colors at that time
 int main(void) {
   InitWindow(1600, 1200, "CIRCA");
 
@@ -90,22 +94,17 @@ int main(void) {
     DrawText("Select Color:", 190, 320, 20, LIGHTGRAY);
 
     // Clear button with neutral background
-    GuiSetStyle(BUTTON, BASE_COLOR_NORMAL, ColorToInt(LIGHTGRAY));
     if (GuiButton((Rectangle){190, 350, 200, 50}, "Clear")) {
       shouldClear = true;
     }
-    GuiSetStyle(BUTTON, BASE_COLOR_NORMAL, ColorToInt(DARKGRAY)); // Reset
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
 
     // Color selection buttons with adjusted positions and borders
-    for(int i = 0; i < NUM_OF_COLORS; i++){
-      GuiSetStyle(BUTTON, BASE_COLOR_NORMAL, ColorToInt(Colors[i].color));
-      GuiSetStyle(BUTTON, BORDER_COLOR_NORMAL, ColorToInt(BLACK)); // Black border for visibility
-      if (GuiButton((Rectangle){190, 410 + 60*i, 200, 50}, Colors[i].name)) {
+    for (int i = 0; i < NUM_OF_COLORS; i++) {
+      GuiSetStyle(DEFAULT, BASE_COLOR_NORMAL, ColorToInt(Colors[i].color));
+      if (GuiButton((Rectangle){190, 410 + 60 * i, 200, 50}, Colors[i].name)) {
         currentColor = Colors[i].color;
       }
-      GuiSetStyle(BUTTON, BASE_COLOR_NORMAL, ColorToInt(DARKGRAY));
-      GuiSetStyle(BUTTON, BORDER_COLOR_NORMAL, ColorToInt(GRAY)); // Reset border
     }
 
     if (shouldClear) {
