@@ -26,4 +26,4 @@ build-run-linux:
 	@ make build-linux run-linux
 format:
 	@ echo Formatting files...
-	@ clang-format ./src/*.c -i --verbose
+	@ clang-format ./src/*.c ./src/*.h -i --verbose
