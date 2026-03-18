@@ -24,7 +24,6 @@ const struct ColorMap COLORS[5] = {
 };
 
 void paintAll(struct PointState pointStates[MAX]) {
-  // Draw our "brush strokes"
   for (int i = 0; i < MAX; i++) {
     struct PointState ps = pointStates[i];
     if (ps.mousePosition.x > 0 && ps.mousePosition.y > 0) {
@@ -72,8 +71,6 @@ int main(void) {
 
   SetTargetFPS(1000);
 
-  // struct Vector2 initV2 = {-1,-1};
-  // struct PointState initPS = {initV2, GRAY};
   struct PointState pointStates[MAX - 1] = {};
   int idx = 0;
   bool shouldClear = false;
