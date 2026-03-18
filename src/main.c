@@ -6,7 +6,6 @@
 int main(void) {
   InitWindow(1600, 1200, "CIRCA");
 
-  // ToggleFullscreen();
   SetWindowState(FLAG_WINDOW_RESIZABLE);
   MaximizeWindow();
 
@@ -21,7 +20,7 @@ int main(void) {
   struct PointState pointStates[MAX - 1] = {};
   int idx = 0;
   bool shouldClear = false;
-  Color currentColor = BLUE; // Default to blue
+  Color currentColor = BLUE;
 
   while (!WindowShouldClose()) {
     bool mouseButtonDown = IsMouseButtonDown(MOUSE_BUTTON_LEFT);
