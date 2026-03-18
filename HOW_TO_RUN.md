@@ -19,9 +19,9 @@ This builds `bin/circa-macos` and runs it in fullscreen (1000 FPS). Rebuild afte
 ## Usage
 
 ### App Workflow
-- The application opens in fullscreen (1600x1200, 1000 FPS) titled "CIRCA" for best mouse/touch tracking.
-- A red circle cursor follows the current mouse or primary touch position continuously.
-- Hold the left mouse button (checked via IsMouseButtonDown) while moving to capture positions: each valid position (x >= 0) is stored and drawn as a green circle trail (up to 10,000 points max; skips invalid negatives).
+- The application opens in a resizable maximized window (1600x1200, 1000 FPS) titled "CIRCA" for best mouse/touch tracking.
+- A circle cursor in the current color follows the current mouse or primary touch position continuously.
+- Hold the left mouse button (checked via IsMouseButtonDown) while moving to capture positions: each valid position (x > 0, y > 0) is stored and drawn as a circle trail in the current color (up to 10,000 points max; skips invalid positions).
 - During capture, "DRAWING..." is displayed in the top-left.
 - Initial instructions: "Hold left click to start drawing..." and app title.
 - Use the "Clear" GUI button (styled with 20px text size) or press Backspace to reset stored points and clear the canvas.
@@ -33,6 +33,6 @@ This builds `bin/circa-macos` and runs it in fullscreen (1000 FPS). Rebuild afte
 Note: Input mixes mouse button checks with GetTouchPosition(0), optimized for touch devices but works with mouse. TODO items in code include adding icons to the Clear button and distinguishing drawing vs. viewing modes more clearly.
 
 ## Troubleshooting
-- Fullscreen Issues: If input fails, comment `ToggleFullscreen()` in main.c and rebuild.
+- Window Issues: If input fails, adjust window state in main.c and rebuild.
 - Drawing Artifacts: Invalid points (negatives) are skipped; reset clears any issues.
 - Performance: 1000 FPS targets smoothness but may cap to hardware; reduce in code if needed.

@@ -1,6 +1,6 @@
 # Circa
 
-A simple drawing application built with Raylib and Raygui. Capture mouse or touch positions to draw trails on the canvas. Defaults to fullscreen with 1000 FPS target for smooth, accurate tracking.
+A simple drawing application built with Raylib and Raygui. Capture mouse or touch positions to draw trails on the canvas. Opens in resizable maximized window with 1000 FPS target for smooth tracking.
 
 ## Requirements
 - Raylib: [Documentation](https://www.raylib.com/) | [Repository](https://github.com/raysan5/raylib) (install via instructions there)
@@ -52,9 +52,9 @@ make build-run-win
 ## Usage
 
 ### App Workflow
-- The application opens in fullscreen mode titled "CIRCA" at 1600x1200 resolution, targeting 1000 FPS for precise tracking.
-- A red circle follows the current mouse or touch position at all times.
-- Hold the left mouse button (or equivalent touch input) to capture valid positions (x >= 0): stored points are drawn as green circles (up to 10,000 points; invalid negatives skipped).
+- The application opens in a resizable maximized window titled "CIRCA" at 1600x1200 resolution, targeting 1000 FPS for precise tracking.
+- A circle in the current color follows the mouse or touch position at all times.
+- Hold the left mouse button (or equivalent touch input) to capture valid positions (x > 0, y > 0): stored points are drawn as circles in the current color (up to 10,000 points; invalid positions skipped).
 - When drawing, "DRAWING..." is displayed.
 - Use the "Clear" button or press Backspace to reset the canvas and stored points.
 - Mouse positions are printed to the console for debugging.

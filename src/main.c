@@ -16,7 +16,7 @@ struct ColorMap {
 };
 
 struct PointState {
-  Vector2 mousePosition[MAX];
+  Vector2 mousePosition;
   Color color;
 };
 
@@ -29,20 +29,20 @@ void paintAll(struct PointState pointStates[MAX]) {
   // Draw our "brush strokes"
   for (int i = 0; i < MAX; i++) {
     struct PointState ps = pointStates[i];
-    if (ps.mousePosition->x > 0 && ps.mousePosition->y > 0) {
-      DrawCircleV(*ps.mousePosition, 10.0, ps.color);
+    if (ps.mousePosition.x > 0 && ps.mousePosition.y > 0) {
+      DrawCircleV(ps.mousePosition, 10.0, ps.color);
     }
   }
 }
 
-void drawPoints(struct PointState pointStates[MAX], int *idx,
-                bool mouseButtonDown) {
+void drawPoints(struct PointState *pointStates, int *idx, bool mouseButtonDown,
+                Color color) {
   Vector2 mp = GetTouchPosition(0);
-  DrawCircleV(mp, 10.0, RED);
+  DrawCircleV(mp, 10.0, color);
 
   if (mouseButtonDown) {
-    if (mp.x >= 0) {
-      struct PointState curr = {mp, ColorToInt(RED)};
+    if (mp.x > 0 && mp.y > 0) {
+      struct PointState curr = {mp, color};
       pointStates[*idx] = curr;
       *idx += 1;
     }
@@ -51,7 +51,7 @@ void drawPoints(struct PointState pointStates[MAX], int *idx,
   paintAll(pointStates);
 }
 
-void reset(struct PointState pointStates[MAX], int *idx) {
+void reset(struct PointState *pointStates, int *idx) {
   for (int i = 0; i < MAX; i++) {
     Vector2 v = {-1, -1};
     struct PointState ps = {v, ColorToInt(LIGHTGRAY)};
@@ -62,9 +62,9 @@ void reset(struct PointState pointStates[MAX], int *idx) {
 int main(void) {
   InitWindow(1600, 1200, "CIRCA");
 
-  ToggleFullscreen();
-  // SetWindowState(FLAG_WINDOW_RESIZABLE);
-  // MaximizeWindow();
+  // ToggleFullscreen();
+  SetWindowState(FLAG_WINDOW_RESIZABLE);
+  MaximizeWindow();
 
   // NOTE: Mouse position tracking only works with fullscreen for now.
   // ToggleFullscreen(); // TODO: For some reason, partial dimensions or sub-max
@@ -116,7 +116,7 @@ int main(void) {
     if (mouseButtonDown) {
       DrawText("DRAWING...", 190, 100, 20, LIGHTGRAY);
     }
-    drawPoints(pointStates, &idx, mouseButtonDown);
+    drawPoints(pointStates, &idx, mouseButtonDown, currentColor);
 
     EndDrawing();
   }
