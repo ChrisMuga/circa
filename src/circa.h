@@ -1,3 +1,8 @@
+#include "../libraries/raylib/src/raylib.h"
+
+#define RAYGUI_IMPLEMENTATION
+#include "../libraries/raygui.h"
+
 #define MAX 10000
 #define NUM_OF_COLORS 5
 

@@ -1,9 +1,5 @@
 #include <stdio.h>
 
-#include "../libraries/raylib/src/raylib.h"
-
-#define RAYGUI_IMPLEMENTATION
-#include "../libraries/raygui.h"
 #include "circa.h"
 
 int main(void) {
