@@ -1,5 +1,3 @@
-// TODO: This implementation is currently seg-faulting, we'll have to use
-// pointer arithmetic to properly use pointStates
 #include <stdio.h>
 
 #include "../libraries/raylib/src/raylib.h"
