@@ -65,7 +65,9 @@ int main(void) {
   MaximizeWindow();
 
   // NOTE: Mouse position tracking only works with fullscreen for now.
-  // ToggleFullscreen(); // TODO: For some reason, partial dimensions or sub-max
+  // ToggleFullscreen(); 
+
+  // TODO: For some reason, partial dimensions or sub-max
   // dimensions do not work in macos, not allowing it to paint.
 
   SetTargetFPS(1000);
