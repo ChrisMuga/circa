@@ -17,8 +17,9 @@ build-run-win:
 	@ make run-win
 build-linux:
 	@ gcc src/main.c -o bin/circa-linux -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
-build-debug-linux:
+debug-linux:
 	@ gcc src/main.c -o bin/circa-linux -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -g
+	@ gdb bin/circa-linux
 run-linux:
 	@ ./bin/circa-linux
 build-run-linux:
