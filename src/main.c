@@ -2,6 +2,7 @@
 
 #include "circa.h"
 
+// TODO: Implement this with pointer arithmetic
 int main(void) {
   InitWindow(1600, 1200, "CIRCA");
 
