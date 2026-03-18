@@ -16,6 +16,8 @@ build-run-win:
 	@ echo "Running..."
 	@ make run-win
 build-linux:
+	@ gcc src/main.c -o bin/circa-linux -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+build-debug-linux:
 	@ gcc src/main.c -o bin/circa-linux -lraylib -lGL -lm -lpthread -ldl -lrt -lX11 -g
 run-linux:
 	@ ./bin/circa-linux
