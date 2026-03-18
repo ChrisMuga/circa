@@ -92,13 +92,11 @@ int main(void) {
     DrawText("Hold left click to start drawing...", 190, 250, 20, LIGHTGRAY);
     DrawText("Select Color:", 190, 320, 20, LIGHTGRAY);
 
-    // Clear button with neutral background
     if (GuiButton((Rectangle){190, 350, 200, 50}, "Clear")) {
       shouldClear = true;
     }
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
 
-    // Color selection buttons with adjusted positions and borders
     for (int i = 0; i < NUM_OF_COLORS; i++) {
       GuiSetStyle(DEFAULT, BASE_COLOR_NORMAL, ColorToInt(Colors[i].color));
       if (GuiButton((Rectangle){190, 410 + 60 * i, 200, 50}, Colors[i].name)) {
