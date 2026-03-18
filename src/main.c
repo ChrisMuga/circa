@@ -19,7 +19,7 @@ struct PointState {
 };
 
 struct ColorMap Colors[5] = {
-    {"Blue", BLUE},   {"Purple", PURPLE}, {"DarkGray", DARKGRAY},
+    {"Blue", BLUE},   {"Purple", PURPLE}, {"Dark Gray", DARKGRAY},
     {"Black", BLACK}, {"White", WHITE},
 };
 
