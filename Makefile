@@ -1,6 +1,11 @@
 build-macos:
-	clang -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL libraries/libraylib-macos.a src/main.c -o bin/circa-macos
-	@ echo Build generated at bin/circa
+	@ clang -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL libraries/libraylib-macos.a src/main.c -o bin/circa-macos
+build-macos-debug:
+	@ clang -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL libraries/libraylib-macos.a src/main.c -o bin/circa-macos -g
+	@ echo Debug build generated at bin/circa-macos
+debug-macos:
+	@ make build-macos-debug
+	@ gdb bin/circa-macos
 run-macos:
 	@ ./bin/circa-macos
 build-run-macos:
