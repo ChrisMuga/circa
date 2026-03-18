@@ -5,7 +5,7 @@ build-macos-debug:
 	@ echo Debug build generated at bin/circa-macos
 debug-macos:
 	@ make build-macos-debug
-	@ gdb bin/circa-macos
+	@ lldb bin/circa-macos
 run-macos:
 	@ ./bin/circa-macos
 build-run-macos:
