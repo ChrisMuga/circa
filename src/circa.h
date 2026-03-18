@@ -4,7 +4,7 @@
 #include "../libraries/raygui.h"
 
 #define MAX 10000
-#define NUM_OF_COLORS 5
+#define NUM_OF_COLORS 8
 
 struct ColorMap {
   char name[10];
@@ -16,10 +16,11 @@ struct PointState {
   Color color;
 };
 
-const struct ColorMap COLORS[5] = {
-    {"Blue", BLUE},   {"Purple", PURPLE}, {"Dark Gray", DARKGRAY},
-    {"Black", BLACK}, {"White", WHITE},
-};
+const struct ColorMap COLORS[NUM_OF_COLORS] = {
+    {"Purple", PURPLE}, {"Dark Gray", DARKGRAY},
+    {"Black", BLACK},   {"White", WHITE},
+    {"Red", RED},       {"Blue", BLUE},
+    {"Green", GREEN},   {"Yellow", YELLOW}};
 
 void paintAll(struct PointState pointStates[MAX]) {
   for (int i = 0; i < MAX; i++) {
