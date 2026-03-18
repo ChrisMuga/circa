@@ -18,7 +18,7 @@ struct PointState {
   Color color;
 };
 
-struct ColorMap Colors[5] = {
+const struct ColorMap COLORS[5] = {
     {"Blue", BLUE},   {"Purple", PURPLE}, {"Dark Gray", DARKGRAY},
     {"Black", BLACK}, {"White", WHITE},
 };
@@ -100,9 +100,9 @@ int main(void) {
     GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
 
     for (int i = 0; i < NUM_OF_COLORS; i++) {
-      GuiSetStyle(DEFAULT, BASE_COLOR_NORMAL, ColorToInt(Colors[i].color));
-      if (GuiButton((Rectangle){190, 410 + 60 * i, 200, 50}, Colors[i].name)) {
-        currentColor = Colors[i].color;
+      GuiSetStyle(DEFAULT, BASE_COLOR_NORMAL, ColorToInt(COLORS[i].color));
+      if (GuiButton((Rectangle){190, 410 + 60 * i, 200, 50}, COLORS[i].name)) {
+        currentColor = COLORS[i].color;
       }
     }
 
