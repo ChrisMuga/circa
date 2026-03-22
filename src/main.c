@@ -6,6 +6,7 @@
 // TODO: Allow for an array of brush sizes
 // TODO: Add exit button
 // TODO: Can we "play" the drawing, maybe by remembering states and reducing the FPS?
+// TODO: The pointer/cursor goes/hides under the painting on hover, this should be fixed because it messes up precision
 int main(void) {
   InitWindow(1600, 1200, "CIRCA");
 
