@@ -40,7 +40,7 @@ int main(void) {
     DrawText("Select Color:", 190, 250, 20, LIGHTGRAY);
 
     int renderHeight = GetRenderHeight();
-    DrawRectangle(DRAWING_LIMIT_X, 0, 3, renderHeight, currentColor);
+    DrawRectangle(DRAWING_LIMIT_X, 0, SEPARATOR_WIDTH, renderHeight, LIGHTGRAY);
 
     if (GuiButton((Rectangle){190, 350, 200, 50}, "Clear")) {
       shouldClear = true;

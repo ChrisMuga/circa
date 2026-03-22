@@ -8,6 +8,7 @@
 #define DRAWING_LIMIT_X 600.0
 #define LIMIT_PADDING 10
 #define LIMIT_X DRAWING_LIMIT_X + LIMIT_PADDING
+#define SEPARATOR_WIDTH 1
 
 struct ColorMap {
   char name[10];
