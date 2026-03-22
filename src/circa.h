@@ -5,6 +5,7 @@
 
 #define MAX 10000
 #define NUM_OF_COLORS 8
+#define DRAWING_LIMIT_X 600.0
 
 struct ColorMap {
   char name[10];
@@ -25,7 +26,8 @@ const struct ColorMap COLORS[NUM_OF_COLORS] = {
 void paintAll(struct PointState pointStates[MAX]) {
   for (int i = 0; i < MAX; i++) {
     struct PointState ps = pointStates[i];
-    if (ps.mousePosition.x > 0 && ps.mousePosition.y > 0) {
+    if (ps.mousePosition.x > 0 && ps.mousePosition.y > 0 &&
+        ps.mousePosition.x > DRAWING_LIMIT_X) {
       DrawCircleV(ps.mousePosition, 10.0, ps.color);
     }
   }
