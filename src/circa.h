@@ -6,6 +6,8 @@
 #define MAX 10000
 #define NUM_OF_COLORS 8
 #define DRAWING_LIMIT_X 600.0
+#define LIMIT_PADDING 10
+#define LIMIT_X DRAWING_LIMIT_X + LIMIT_PADDING
 
 struct ColorMap {
   char name[10];
@@ -27,7 +29,7 @@ void paintAll(struct PointState pointStates[MAX]) {
   for (int i = 0; i < MAX; i++) {
     struct PointState ps = pointStates[i];
     if (ps.mousePosition.x > 0 && ps.mousePosition.y > 0 &&
-        ps.mousePosition.x > DRAWING_LIMIT_X) {
+        ps.mousePosition.x > LIMIT_X) {
       DrawCircleV(ps.mousePosition, 10.0, ps.color);
     }
   }
@@ -40,7 +42,7 @@ void drawPoints(struct PointState *pointStates, int *idx, bool mouseButtonDown,
   char status[100] = "Circa - left click and drag to start drawing...";
 
   if (mouseButtonDown) {
-    if (mp.x > DRAWING_LIMIT_X) {
+    if (mp.x > LIMIT_X) {
       strcpy(status, "Circa - Drawing...");
     } else {
       strcpy(status, "Circa - Cannot draw here...");
@@ -49,7 +51,7 @@ void drawPoints(struct PointState *pointStates, int *idx, bool mouseButtonDown,
 
   GuiStatusBar((Rectangle){0, 0, 2000, 50}, status);
 
-  if (mp.x > DRAWING_LIMIT_X) {
+  if (mp.x > LIMIT_X) {
     DrawCircleV(mp, 10.0, color);
   }
 

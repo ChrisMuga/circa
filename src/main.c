@@ -36,8 +36,10 @@ int main(void) {
     ClearBackground(GRAY);
 
     DrawText("CIRCA", 190, 200, 60, LIGHTGRAY);
-    DrawText("Hold left click to start drawing...", 190, 250, 20, LIGHTGRAY);
-    DrawText("Select Color:", 190, 320, 20, LIGHTGRAY);
+    DrawText("Select Color:", 190, 250, 20, LIGHTGRAY);
+
+    int renderHeight = GetRenderHeight();
+    DrawRectangle(DRAWING_LIMIT_X, 0, 3, renderHeight, currentColor);
 
     if (GuiButton((Rectangle){190, 350, 200, 50}, "Clear")) {
       shouldClear = true;
