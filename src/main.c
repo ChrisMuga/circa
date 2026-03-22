@@ -3,6 +3,8 @@
 #include "circa.h"
 
 // TODO: Implement this with pointer arithmetic
+// TODO: Allow for an array of brush sizes
+// TODO: Add exit button
 int main(void) {
   InitWindow(1600, 1200, "CIRCA");
 
