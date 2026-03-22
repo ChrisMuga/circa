@@ -37,16 +37,23 @@ void drawPoints(struct PointState *pointStates, int *idx, bool mouseButtonDown,
                 Color color) {
   Vector2 mp = GetTouchPosition(0);
 
+  char status[100] = "Circa - left click and drag to start drawing...";
+
+  if (mouseButtonDown) {
+    if (mp.x > DRAWING_LIMIT_X) {
+      strcpy(status, "Circa - Drawing...");
+    } else {
+      strcpy(status, "Circa - Cannot draw here...");
+    }
+  }
+
+  GuiStatusBar((Rectangle){0, 0, 2000, 50}, status);
+
   if (mp.x > DRAWING_LIMIT_X) {
     DrawCircleV(mp, 10.0, color);
   }
 
   if (mouseButtonDown) {
-    if (mp.x > DRAWING_LIMIT_X) {
-      DrawText("DRAWING...", 190, 100, 20, LIGHTGRAY);
-    } else {
-      DrawText("CANNOT DRAW HERE...", 190, 100, 20, LIGHTGRAY);
-    }
     if (mp.x > 0 && mp.y > 0) {
       struct PointState curr = {mp, color};
       pointStates[*idx] = curr;
