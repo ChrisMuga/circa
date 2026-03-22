@@ -54,10 +54,10 @@ make build-run-win
 ### App Workflow
 - The application opens in a resizable maximized window titled "CIRCA" at 1600x1200 resolution, targeting 1000 FPS for precise tracking.
 - A circle in the current color follows the mouse or touch position at all times.
-- Hold the left mouse button (or equivalent touch input) to capture valid positions (x > 0, y > 0): stored points are drawn as circles in the current color (up to 10,000 points; invalid positions skipped).
-- When drawing, "DRAWING..." is displayed.
+- A vertical line in the current color marks the boundary at x=600; drawing is enabled only to the right (x > 610).
+- Hold the left mouse button (or equivalent touch input) to capture positions (x > 0, y > 0): stored points in the drawing area (x > 610) are drawn as circles in the current color (up to 10,000 points; points left of the line are stored but not drawn). When drawing in the area, "DRAWING..." is displayed; if outside, "Cannot draw here...".
 - Use the "Clear" button or press Backspace to reset the canvas and stored points.
-- Mouse positions are printed to the console for debugging.
+
 - Close the window (ESC or platform-specific; may require fullscreen exit shortcut).
 
 Note: Fullscreen is now enabled by default for accurate mouse/touch tracking; adjust in code if needed.
