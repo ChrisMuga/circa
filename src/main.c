@@ -9,6 +9,8 @@
 // FPS?
 // TODO: The pointer/cursor goes/hides under the painting on hover, this should
 // be fixed because it messes up precision
+// TODO: Implement DRAWING_LIMIT_Y on the bottom side, to avoid collision with
+// the status bar
 int main(void) {
   InitWindow(1600, 1200, "CIRCA");
 
