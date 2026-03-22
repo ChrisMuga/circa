@@ -36,9 +36,17 @@ void paintAll(struct PointState pointStates[MAX]) {
 void drawPoints(struct PointState *pointStates, int *idx, bool mouseButtonDown,
                 Color color) {
   Vector2 mp = GetTouchPosition(0);
-  DrawCircleV(mp, 10.0, color);
+
+  if (mp.x > DRAWING_LIMIT_X) {
+    DrawCircleV(mp, 10.0, color);
+  }
 
   if (mouseButtonDown) {
+    if (mp.x > DRAWING_LIMIT_X) {
+      DrawText("DRAWING...", 190, 100, 20, LIGHTGRAY);
+    } else {
+      DrawText("CANNOT DRAW HERE...", 190, 100, 20, LIGHTGRAY);
+    }
     if (mp.x > 0 && mp.y > 0) {
       struct PointState curr = {mp, color};
       pointStates[*idx] = curr;

@@ -57,9 +57,6 @@ int main(void) {
       shouldClear = false;
     }
 
-    if (mouseButtonDown) {
-      DrawText("DRAWING...", 190, 100, 20, LIGHTGRAY);
-    }
     drawPoints(pointStates, &idx, mouseButtonDown, currentColor);
 
     EndDrawing();
