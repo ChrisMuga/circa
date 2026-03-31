@@ -55,10 +55,6 @@ void drawPoints(struct PointState *pointStates, int *idx, bool mouseButtonDown,
 
   GuiStatusBar((Rectangle){0, renderHeight - 50, renderWidth, 50}, status);
 
-  if (mp.x > LIMIT_X) {
-    DrawCircleV(mp, 10.0, color);
-  }
-
   if (mouseButtonDown) {
     if (mp.x > 0 && mp.y > 0) {
       struct PointState curr = {mp, color};
@@ -68,6 +64,12 @@ void drawPoints(struct PointState *pointStates, int *idx, bool mouseButtonDown,
   }
 
   paintAll(pointStates);
+
+  // This is the current position of the cursor.
+  // 	- So this circle just shows you where you are on the canvas
+  if (mp.x > LIMIT_X) {
+    DrawCircleV(mp, 10.0, color);
+  }
 }
 
 void reset(struct PointState *pointStates, int *idx) {
