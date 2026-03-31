@@ -42,6 +42,8 @@ void drawPoints(struct PointState *pointStates, int *idx, bool mouseButtonDown,
 
   char status[100] = "Circa - left click and drag to start drawing...";
 
+  SetMouseCursor(MOUSE_CURSOR_POINTING_HAND);
+
   if (mouseButtonDown) {
     if (mp.x > LIMIT_X) {
       strcpy(status, "Circa - Drawing...");
