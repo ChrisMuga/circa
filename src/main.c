@@ -58,6 +58,12 @@ int main(void) {
         currentColor = COLORS[i].color;
       }
     }
+    // Testing Screenshot
+    GuiSetStyle(DEFAULT, BASE_COLOR_NORMAL, ColorToInt(RAYWHITE));
+    if (GuiButton((Rectangle){190, 1000, 200, 50}, "Screenshot")) {
+      TakeScreenshot("screenshot.png");
+    }
+
     GuiSetStyle(DEFAULT, BASE_COLOR_NORMAL, ColorToInt(WHITE));
 
     if (shouldClear) {
