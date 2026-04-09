@@ -58,7 +58,12 @@ int main(void) {
         currentColor = COLORS[i].color;
       }
     }
+    // TODO: This button is bleeding into the statusbar.
+    // 	- its position should be "relative"
+    // 	- maybe check with Raylib/Raygui documentation, for potential API
+    // references
     // Testing Screenshot
+    // TODO: The screenshot button is not working, investigate
     GuiSetStyle(DEFAULT, BASE_COLOR_NORMAL, ColorToInt(RAYWHITE));
     if (GuiButton((Rectangle){190, 1000, 200, 50}, "Screenshot")) {
       TakeScreenshot("screenshot.png");
